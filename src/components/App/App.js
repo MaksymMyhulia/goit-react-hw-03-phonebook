@@ -20,17 +20,19 @@ state = {
   filter: '',
 };
 
-componentDidMount(){
+componentDidMount() {
   const contactsFromLS = localStorage.getItem('contacts');
-  const parsedContacts = JSON.parse(contactsFromLS)
+  const parsedContacts = JSON.parse(contactsFromLS);
   if (!parsedContacts) return;
   this.setState({ contacts: parsedContacts });
 }
+
 componentDidUpdate(prevProps, prevState) {
 if (this.state.contacts !== prevState.contacts) {
   localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
 }
 }
+
 addContact = newContact => {
    this.state.contacts.some( contact =>
      contact.name.toLowerCase().trim() === newContact.name.trim() ||
